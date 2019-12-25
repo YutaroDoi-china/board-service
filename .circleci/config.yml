@@ -30,4 +30,4 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
     
-      - run: php artisan migrate:refresh --seed
+      - run: php artisan migrate:refresh --seed --force
