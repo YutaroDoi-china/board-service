@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker: 
+      - image: circleci/php:7.3-zts-node-browsers-legacy
+      - image: ccatircleci/mysql:5.7.26
+    enviroment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:yhz3yI0KtTOPOhZ3WE8lgINFSrAAETQIuZoTOcO8vnk=
+      - DB_CONNECTION: circleci
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    working_directory: ~/workplace
+
+    steps:
+      - checkout
+
+      - run: sudo docker-php-ext-install pdo_mysql
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+    
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+    
+      - run: php artisan migrate --seed
