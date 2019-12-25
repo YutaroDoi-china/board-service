@@ -5,7 +5,7 @@
     <div class="container">
         @if(isset($boards[0]))
             <div class="dashboard cf">
-                <div class="create-new"><a href="new-board">新しいボードを作る</a></div>
+                <div class="create-new"><a href="new-board">新しいボーボボを作る</a></div>
                 <div class="filters">
                     <a class="sort-btn" data-sort="gone">消える順</a>
                     <a class="sort-btn" data-sort="new">新着</a>
