@@ -35,5 +35,9 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-    
-      - run: php artisan migrate:refresh --seed --force
+      
+      - run:
+        name: Wait for db
+        command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run: php artisan db:seed
