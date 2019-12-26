@@ -4,7 +4,7 @@ jobs:
     docker: 
       - image: circleci/php:7.3-zts-node-browsers-legacy
       - image: circleci/mysql:5.7.26
-    enviroment:
+    environment:
       - APP_DEBUG: true
       - APP_ENV: testing
       - APP_KEY: base64:yhz3yI0KtTOPOhZ3WE8lgINFSrAAETQIuZoTOcO8vnk=
